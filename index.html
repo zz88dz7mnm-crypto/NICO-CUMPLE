@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>19 Birthday Nico</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Cumple 19 de Nico — Sábado 14, 12hs, en el quincho. Rincón 1622.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@600;800;900&family=Yellowtail&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --neon:#d8e01b;
+    --neon-2:#eef25a;
+    --ink:#0d0d0d;
+    --paper:#ffffff;
+    --concrete:#8f8f8f;
+    --concrete-dark:#6e6e6e;
+    --spoty:#1ed760;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  main{overflow-x:clip}
+  body{
+    background:var(--concrete);
+    color:var(--ink);
+    font-family:"Montserrat",system-ui,sans-serif;
+    overflow-x:hidden;
+    min-height:100%;
+  }
+
+  /* ---------- textura grunge de fondo ---------- */
+  .grunge{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.35), transparent 45%),
+      radial-gradient(ellipse at 85% 70%, rgba(255,255,255,.25), transparent 50%),
+      radial-gradient(ellipse at 40% 90%, rgba(0,0,0,.25), transparent 45%),
+      linear-gradient(180deg,#9a9a9a,#7d7d7d);
+  }
+  .grunge::after{
+    content:"";position:absolute;inset:0;opacity:.55;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.6 -0.55'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  /* rayas blancas tipo pared/cancha */
+  .lines{
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background:
+      linear-gradient(90deg, transparent calc(18% - 2px), rgba(255,255,255,.7) 18%, transparent calc(18% + 2px)),
+      linear-gradient(0deg, transparent calc(58% - 2px), rgba(255,255,255,.55) 58%, transparent calc(58% + 2px));
+  }
+
+  /* ---------- estrellas / explosiones ---------- */
+  .burst{
+    position:absolute;z-index:1;pointer-events:none;
+    clip-path:polygon(50% 0%,58% 32%,85% 10%,68% 40%,100% 45%,70% 58%,92% 88%,58% 70%,50% 100%,42% 70%,10% 92%,32% 58%,0% 50%,30% 40%,14% 12%,42% 30%);
+  }
+  .burst.y{background:var(--neon)}
+  .burst.k{
+    background:
+      radial-gradient(circle, var(--ink) 38%, transparent 40%) 0 0/9px 9px;
+    filter:contrast(1.2);
+  }
+  .burst.k.solid{background:var(--ink)}
+  .star4{
+    position:absolute;z-index:1;pointer-events:none;
+    clip-path:polygon(50% 0%,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0% 50%,40% 40%);
+    background:radial-gradient(circle, var(--ink) 40%, transparent 42%) 0 0/8px 8px;
+  }
+  .spin{animation:spin 40s linear infinite}
+  .pulse{animation:pulse 3.5s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes pulse{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.08) rotate(6deg)}}
+
+  /* ---------- layout ---------- */
+  main{position:relative;z-index:2;max-width:560px;margin:0 auto;padding-block:0 40px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+  section{position:relative}
+
+  /* ---------- bola de boliche ---------- */
+  .disco-wrap{display:flex;justify-content:center;padding-top:28px;position:relative}
+  .string{position:absolute;top:0;left:50%;width:2px;height:30px;background:#333}
+  .disco{
+    width:min(52vw,230px);aspect-ratio:1;border-radius:50%;position:relative;overflow:hidden;
+    box-shadow:0 0 0 3px rgba(255,255,255,.2), 0 18px 40px rgba(0,0,0,.35);
+    background:
+      radial-gradient(circle at 32% 28%, rgba(255,255,255,.95) 0 6%, transparent 22%),
+      radial-gradient(circle at 50% 50%, transparent 55%, rgba(0,0,0,.65) 100%),
+      #9c9c9c;
+  }
+  .disco::before{
+    content:"";position:absolute;inset:-50%;
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.75) 0 2px, transparent 2px 15px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.75) 0 2px, transparent 2px 15px),
+      repeating-conic-gradient(from 0deg at 50% 50%, #eee 0 8deg, #555 8deg 14deg, #bbb 14deg 22deg, #222 22deg 27deg, #fff 27deg 33deg, #777 33deg 40deg);
+    animation:spin 14s linear infinite;
+    mix-blend-mode:normal;
+  }
+  .disco::after{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle at 30% 25%, rgba(255,255,255,.55), transparent 40%),
+               radial-gradient(circle at 50% 50%, transparent 50%, rgba(0,0,0,.6) 100%);
+  }
+  .sparkle{position:absolute;width:18px;height:18px;background:#fff;z-index:3;
+    clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);
+    animation:twinkle 1.8s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
+
+  /* ---------- 19 ---------- */
+  .hero{text-align:center;margin-top:-10px;position:relative}
+  .shield{
+    position:absolute;left:0;top:-150px;width:62px;height:72px;background:var(--ink);
+    clip-path:polygon(0 0,100% 0,100% 55%,50% 100%,0 55%);
+    display:grid;place-items:center;color:var(--neon);font-family:"Archivo Black";font-size:24px;
+    transform:rotate(-8deg);z-index:3
+  }
+  .shield span{margin-top:-8px;letter-spacing:-3px}
+  .nineteen{
+    font-family:"Archivo Black",sans-serif;
+    font-size:clamp(150px,46vw,260px);line-height:.9;letter-spacing:-.02em;
+    color:#a3a3a3;
+    -webkit-text-stroke:5px var(--ink);
+    text-shadow:
+      10px 10px 0 var(--ink),
+      14px 14px 0 var(--ink);
+    position:relative;display:inline-block;
+  }
+  .nineteen::after{ /* línea blanca interior */
+    content:"19";position:absolute;inset:0;color:transparent;
+    -webkit-text-stroke:1.5px #fff;transform:translate(-4px,-4px);
+  }
+  .title{
+    display:flex;align-items:baseline;justify-content:center;gap:10px;flex-wrap:wrap;
+    margin-top:-18px;position:relative;z-index:3;
+  }
+  .bday{
+    font-family:"Yellowtail",cursive;color:var(--neon);
+    font-size:clamp(58px,17vw,92px);line-height:1;
+    -webkit-text-stroke:1.5px #fff;
+    text-shadow:3px 3px 0 #fff, 0 0 18px rgba(216,224,27,.45);
+    transform:rotate(-6deg);display:inline-block;
+  }
+  .nico{
+    font-family:"Montserrat";font-weight:900;color:#fff;
+    font-size:clamp(42px,12vw,64px);letter-spacing:.02em;
+    -webkit-text-stroke:2px var(--neon);
+    text-shadow:4px 4px 0 var(--neon);
+  }
+
+  /* ---------- info ---------- */
+  .info{margin:34px 0 0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;position:relative;z-index:3}
+  .info .big{font-family:"Montserrat";font-weight:900;font-size:clamp(34px,10vw,48px);line-height:1;color:var(--ink)}
+  .tag{background:#fff;color:var(--ink);font-weight:800;font-size:clamp(16px,4.6vw,20px);padding:4px 12px;letter-spacing:.04em}
+  .plain{color:#fff;font-weight:800;font-size:clamp(18px,5.2vw,24px);letter-spacing:.06em;padding-left:6px}
+  .addr{
+    background:var(--neon);color:#fff;font-weight:800;
+    font-size:clamp(28px,8.5vw,40px);padding:6px 16px;letter-spacing:.06em;
+    text-shadow:2px 2px 0 rgba(0,0,0,.15);
+    text-decoration:none;display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;white-space:nowrap;
+    transition:transform .2s;
+  }
+  .addr:hover{transform:translateX(4px) rotate(-1deg)}
+  .addr small{font-size:.38em;color:var(--ink);font-weight:800;text-shadow:none}
+
+  /* ---------- QR ---------- */
+  .qr-block{margin:56px auto 0;text-align:center;position:relative;z-index:3}
+  .qr-label{
+    display:inline-block;background:var(--ink);color:var(--neon);
+    font-family:"Archivo Black";font-size:clamp(18px,5vw,24px);
+    padding:8px 16px;transform:rotate(-2deg);margin-bottom:-6px;position:relative;z-index:2
+  }
+  .qr-frame{
+    position:relative;display:inline-block;padding:14px;background:#fff;
+    border:6px solid var(--ink);
+    box-shadow:12px 12px 0 var(--neon), 12px 12px 0 6px var(--ink);
+    transform:rotate(1.5deg);
+    transition:transform .3s;
+  }
+  .qr-frame:hover{transform:rotate(0) scale(1.02)}
+  .qr-frame img{display:block;width:min(78vw,340px);height:auto;image-rendering:pixelated}
+  .qr-burst{width:min(115vw,560px);aspect-ratio:1;left:50%;top:50%;translate:-50% -46%;z-index:-1}
+
+  /* ---------- botón spotify ---------- */
+  .spoty{
+    margin:44px auto 0;display:flex;align-items:center;justify-content:center;gap:12px;
+    width:min(100%,380px);padding:18px 22px;
+    background:var(--ink);color:var(--neon);text-decoration:none;
+    font-family:"Archivo Black";font-size:clamp(18px,5vw,22px);letter-spacing:.02em;
+    border:4px solid var(--ink);
+    box-shadow:8px 8px 0 var(--neon);
+    transition:transform .15s, box-shadow .15s, background .2s, color .2s;
+    position:relative;z-index:3;
+  }
+  .spoty svg{width:34px;height:34px;flex:none}
+  .spoty:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--neon)}
+  .spoty:active{transform:translate(6px,6px);box-shadow:2px 2px 0 var(--neon)}
+  .spoty:focus-visible{outline:4px solid #fff;outline-offset:4px}
+  .spoty-sub{text-align:center;margin-top:14px;color:#fff;font-weight:800;letter-spacing:.08em;font-size:13px;position:relative;z-index:3}
+
+  /* ---------- nene ---------- */
+  .nene{
+    position:relative;z-index:4;display:block;height:auto;
+    width:min(40vw,200px);margin:40px 0 -40px -6px;
+    filter:drop-shadow(6px 8px 0 rgba(0,0,0,.35));
+    transform-origin:bottom center;animation:chupi 2.6s ease-in-out infinite;
+  }
+  @keyframes chupi{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(4deg) translateY(-6px)}}
+
+  /* ---------- cinta ---------- */
+  .tape-zone{position:relative;z-index:5;margin:0 -16px;padding:20px 0 30px;overflow:hidden}
+  .tape-top{
+    background:#fff;color:var(--ink);font-weight:800;letter-spacing:.06em;
+    font-size:clamp(14px,4vw,18px);padding:6px 24px;display:inline-block;
+    transform:rotate(-4deg);margin-left:18%;
+  }
+  .tape{
+    background:var(--ink);color:#fff;transform:rotate(-4deg);margin:-2px -20px 0;
+    border-top:3px solid #fff;border-bottom:3px solid #fff;overflow:hidden;white-space:nowrap
+  }
+  .tape-track{display:inline-flex;animation:marquee 14s linear infinite;padding:10px 0}
+  .tape-track span{font-weight:900;font-size:clamp(20px,6vw,30px);letter-spacing:.06em;padding-right:24px}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ---------- flyer ---------- */
+  .flyer{margin:40px auto 0;text-align:center;position:relative;z-index:3}
+  .flyer h2{font-family:"Archivo Black";color:var(--ink);font-size:22px;margin-bottom:14px}
+  .flyer h2 em{font-style:normal;background:var(--neon);padding:0 8px}
+  .flyer img{width:100%;height:auto;max-width:420px;border:6px solid #fff;box-shadow:0 20px 40px rgba(0,0,0,.35);transform:rotate(-2deg)}
+  footer{text-align:center;color:#fff;font-weight:800;font-size:12px;letter-spacing:.2em;margin-top:36px;opacity:.8;position:relative;z-index:3}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+</style>
+<div class="grunge"></div>
+<div class="lines"></div>
+
+<!-- explosiones de fondo -->
+<div class="burst y pulse" style="width:340px;height:340px;top:-60px;left:-120px;position:fixed;z-index:1"></div>
+<div class="burst y pulse" style="width:300px;height:300px;top:-40px;right:-110px;position:fixed;z-index:1;animation-delay:-1.5s"></div>
+<div class="burst k" style="width:260px;height:260px;top:40px;right:-60px;position:fixed;z-index:1"></div>
+<div class="star4 spin" style="width:220px;height:220px;top:300px;left:-90px;position:fixed;z-index:1"></div>
+<div class="burst y pulse" style="width:360px;height:360px;bottom:-140px;right:-120px;position:fixed;z-index:1;animation-delay:-.8s"></div>
+<div class="burst y pulse" style="width:260px;height:260px;bottom:-80px;left:-100px;position:fixed;z-index:1;animation-delay:-2.2s"></div>
+
+<main>
+  <section class="disco-wrap" aria-hidden="true">
+    <div class="string"></div>
+    <div class="disco"></div>
+    <i class="sparkle" style="top:40px;left:28%"></i>
+    <i class="sparkle" style="top:120px;right:24%;animation-delay:.6s"></i>
+    <i class="sparkle" style="top:200px;left:34%;animation-delay:1.2s"></i>
+  </section>
+
+  <section class="hero">
+    <div class="shield" aria-hidden="true"><span>HG</span></div>
+    <h1>
+      <span class="nineteen">19</span>
+      <span class="title"><span class="bday">Birthday</span><span class="nico">NICO</span></span>
+    </h1>
+  </section>
+
+  <section class="info">
+    <div class="big">SÁBADO 14</div>
+    <div class="tag">EN EL QUINCHO</div>
+    <div class="plain">A LAS 12HS</div>
+    <a class="addr" href="https://www.google.com/maps/search/?api=1&query=Rincon+1622" target="_blank" rel="noopener">RINCÓN 1622 <small>VER MAPA ↗</small></a>
+  </section>
+
+  <section class="qr-block">
+    <div class="burst y qr-burst spin" style="position:absolute"></div>
+    <div class="qr-label">ESCANEÁ ESTO 👇</div><br>
+    <div class="qr-frame">
+      <img src="img/qr.png" alt="Código QR de la playlist del cumple de Nico" width="1024" height="1024">
+    </div>
+  </section>
+
+  <a class="spoty" href="https://open.spotify.com/playlist/2RCxAlb28JbHVyOiGrxWvN?si=e1Epu74YQVKMhuEvD1hFOQ&amp;utm_source=copy-link&amp;pi=YKEJsr_9Q8OJb&amp;pt=1e87c95ed9a70f17cbe6990b1a1d7068" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1ed760"/><path d="M17.5 10.6c-2.9-1.7-7.6-1.9-10.4-1.1-.4.1-.9-.1-1-.6-.1-.4.1-.9.6-1 3.2-1 8.4-.8 11.7 1.2.4.2.5.8.3 1.2-.3.4-.8.5-1.2.3zm-.1 2.5c-.2.3-.6.4-1 .2-2.4-1.5-6.1-1.9-9-1-.4.1-.8-.1-.9-.5-.1-.4.1-.8.5-.9 3.3-1 7.4-.5 10.2 1.2.3.2.4.7.2 1zm-1.1 2.5c-.2.3-.5.4-.8.2-2.1-1.3-4.7-1.6-7.8-.9-.3.1-.6-.1-.7-.4-.1-.3.1-.6.4-.7 3.4-.8 6.3-.4 8.7 1 .3.2.4.5.2.8z" fill="#0d0d0d"/></svg>
+    ABRIR PLAYLIST EN SPOTIFY
+  </a>
+  <p class="spoty-sub">AGREGÁ TUS TEMAS · QUE NO PARE</p>
+
+  <img class="nene" src="img/nene.png" alt="Nico de bebé tomando de una botella" width="344" height="428">
+  <section class="tape-zone" aria-label="Traé lo que quieras tomar. Joda, chupi y diversión.">
+    <div class="tape-top">TRAÉ LO QUE QUIERAS TOMAR</div>
+    <div class="tape" aria-hidden="true">
+      <div class="tape-track">
+        <span>JODA CHUPI Y DIVERSIÓN -</span><span>JODA CHUPI Y DIVERSIÓN -</span><span>JODA CHUPI Y DIVERSIÓN -</span>
+        <span>JODA CHUPI Y DIVERSIÓN -</span><span>JODA CHUPI Y DIVERSIÓN -</span><span>JODA CHUPI Y DIVERSIÓN -</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="flyer">
+    <h2>EL <em>FLYER</em> OFICIAL</h2>
+    <img src="img/flyer.jpg" alt="Flyer del cumple 19 de Nico" width="1081" height="1351" loading="lazy">
+  </section>
+
+  <footer>NICO · 19 · SÁBADO 14 · 12HS</footer>
+</main>
+
+</html>
